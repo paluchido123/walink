@@ -1,124 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- [Your existing head content] -->
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
-      body {
-        font-family: "Poppins", sans-serif;
-        margin: 0;
-        padding: 0;
-        background: linear-gradient(135deg, #9b59b6, #8e44ad);
-        min-height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: white;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Casino WhatsApp Button</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;700&display=swap");
+
+    body {
+      font-family: "Montserrat", sans-serif;
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(circle, #9b59b6, #8e44ad);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+    }
+
+    .container {
+      text-align: center;
+      max-width: 500px;
+      width: 90%;
+      padding: 50px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 30px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+      position: relative;
+    }
+
+    h1 {
+      font-family: "Anton", sans-serif;
+      font-size: 48px;
+      margin-bottom: 30px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .whatsapp-btn {
+      display: inline-block;
+      background-color: #25d366;
+      color: white;
+      text-decoration: none;
+      font-size: 24px;
+      font-weight: bold;
+      padding: 20px 40px;
+      border-radius: 50px;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .whatsapp-btn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .whatsapp-btn:active {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    @media (max-width: 480px) {
       .container {
-        text-align: center;
-        max-width: 600px;
-        width: 90%;
-        background-color: rgba(255, 255, 255, 0.1);
-        border-radius: 20px;
-        box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
-        padding: 60px;
-        margin: 30px; /* Añadido margen */
+        padding: 40px;
       }
+
       h1 {
-        font-size: 48px;
-        font-weight: 600;
-        margin-bottom: 30px;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        font-size: 36px;
       }
+
       .whatsapp-btn {
-        display: inline-block;
-        background-color: #25d366;
-        color: white;
-        text-decoration: none;
-        font-size: 24px;
-        font-weight: 600;
-        padding: 20px 40px;
-        border: none;
-        border-radius: 50px;
-        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        cursor: pointer;
+        font-size: 20px;
+        padding: 16px 32px;
       }
-      .whatsapp-btn:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 12px 20px rgba(0, 0, 0, 0.4);
-      }
-      .whatsapp-btn:active {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
-      }
-      @media (max-width: 480px) {
-        .container {
-          padding: 40px;
-          margin: 20px; /* Margen ajustado para móvil */
-        }
-        h1 {
-          font-size: 36px;
-        }
-        .whatsapp-btn {
-          font-size: 20px;
-          padding: 16px 32px;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <h1>Entra para empezar a jugar!</h1>
-      <a
-        href="#"
-        class="whatsapp-btn"
-        onclick="redirectToRandomLink()"
-        rel="noopener noreferrer"
-        >WhatsApp</a
-      >
-    </div>
+    }
 
-    <!-- Prompt to open in default browser -->
-    <div class="prompt" id="browserPrompt">
-      <p>
-        Para una mejor experiencia, por favor abre este sitio en tu navegador
-        predeterminado.
-      </p>
-      <button onclick="openInBrowser()">Abrir en Navegador</button>
-    </div>
+    /* Styles for the prompt */
+    .prompt {
+      display: none;
+      background-color: rgba(0, 0, 0, 0.85);
+      color: white;
+      padding: 30px;
+      border-radius: 10px;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      z-index: 1000;
+      max-width: 90%;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    }
 
-    <script>
-      const links = ["wa.link/pruebapagina"];
+    .prompt.active {
+      display: block;
+    }
 
-      function redirectToRandomLink() {
-        const randomIndex = Math.floor(Math.random() * links.length);
-        window.location.href = links[randomIndex];
+    .prompt button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #25d366;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    .prompt button:hover {
+      background-color: #1ebe5b;
+    }
+
+    .prompt a {
+      color: #25d366;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>¡Entra para empezar a jugar!</h1>
+    <a
+      href="#"
+      class="whatsapp-btn"
+      onclick="redirectToRandomLink(event)"
+      rel="noopener noreferrer"
+    >WhatsApp</a>
+  </div>
+
+  <!-- Prompt to open in default browser -->
+  <div class="prompt" id="browserPrompt">
+    <p>Para una mejor experiencia, por favor abre este sitio en tu navegador predeterminado.</p>
+    <button onclick="openInBrowser()">Abrir en Navegador</button>
+    <p style="margin-top: 10px;">O copia y pega este enlace en tu navegador: <br/><a href="#" id="copyLink">https://wa.link/pruebapagina</a></p>
+  </div>
+
+  <script>
+    const links = ["https://wa.link/pruebapagina"];
+
+    function redirectToRandomLink(event) {
+      event.preventDefault(); // Prevent default anchor behavior
+      const randomIndex = Math.floor(Math.random() * links.length);
+      const url = links[randomIndex];
+      if (isInstagramBrowser()) {
+        showPrompt(url);
+      } else {
+        window.open(url, '_blank');
       }
+    }
 
-      function isInstagramBrowser() {
-        const ua = navigator.userAgent || navigator.vendor || window.opera;
-        return ua.includes("Instagram");
+    function isInstagramBrowser() {
+      const ua = navigator.userAgent || navigator.vendor || window.opera;
+      return ua.includes('Instagram');
+    }
+
+    function showPrompt(url) {
+      const prompt = document.getElementById('browserPrompt');
+      prompt.classList.add('active');
+
+      // Update the copy link
+      const copyLink = document.getElementById('copyLink');
+      copyLink.textContent = url;
+      copyLink.href = url;
+    }
+
+    function openInBrowser() {
+      const url = "https://wa.link/pruebapagina"; // Replace with your actual URL
+      // Attempt to open in default browser
+      window.open(url, '_blank');
+      // Optionally, hide the prompt after attempting to open
+      document.getElementById('browserPrompt').classList.remove('active');
+    }
+
+    // Optional: Close the prompt when clicking outside of it
+    window.onclick = function(event) {
+      const prompt = document.getElementById('browserPrompt');
+      if (event.target == prompt) {
+        prompt.classList.remove('active');
       }
-
-      function showPrompt() {
-        const prompt = document.getElementById("browserPrompt");
-        prompt.classList.add("active");
-      }
-
-      function openInBrowser() {
-        const url = window.location.href;
-        // Attempt to open in default browser using a workaround
-        window.open(url, "_blank");
-        // Optionally, provide instructions if the above doesn't work
-      }
-
-      window.onload = function () {
-        if (isInstagramBrowser()) {
-          showPrompt();
-        }
-      };
-    </script>
-  </body>
+    }
+  </script>
+</body>
 </html>
