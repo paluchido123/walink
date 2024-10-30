@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jugar ya!</title>
+    <title>Casino WhatsApp Button</title>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
       body {
@@ -41,6 +41,7 @@
         font-size: 24px;
         font-weight: 600;
         padding: 20px 40px;
+        border: none; /* Cambiado de 'border-radius: 50px;' */
         border-radius: 50px;
         box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -72,7 +73,7 @@
   <body>
     <div class="container">
       <h1>¡Entra para empezar a jugar!</h1>
-      <a href="#" class="whatsapp-btn" onclick="redirectToWhatsApp()">WhatsApp</a>
+      <button class="whatsapp-btn" onclick="redirectToWhatsApp()">WhatsApp</button>
     </div>
     <script>
       function redirectToWhatsApp() {
