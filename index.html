@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Casino WhatsApp Button</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+      body {
+        font-family: "Poppins", sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #9b59b6, #8e44ad);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+      }
+      .container {
+        text-align: center;
+        max-width: 600px;
+        width: 90%;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+        padding: 60px;
+        margin: 30px; /* Added margin */
+      }
+      h1 {
+        font-size: 48px;
+        font-weight: 600;
+        margin-bottom: 30px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      }
+      .whatsapp-btn {
+        display: inline-block;
+        background-color: #25d366;
+        color: white;
+        text-decoration: none;
+        font-size: 24px;
+        font-weight: 600;
+        padding: 20px 40px;
+        border-radius: 50px;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .whatsapp-btn:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 20px rgba(0, 0, 0, 0.4);
+      }
+      .whatsapp-btn:active {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+      }
+      @media (max-width: 480px) {
+        .container {
+          padding: 40px;
+          margin: 20px; /* Adjusted mobile margin */
+        }
+        h1 {
+          font-size: 36px;
+        }
+        .whatsapp-btn {
+          font-size: 20px;
+          padding: 16px 32px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>¡Entra para empezar a jugar!</h1>
+      <a href="#" class="whatsapp-btn" onclick="redirectToWhatsApp()"
+        >WhatsApp</a
+      >
+    </div>
+    <script>
+      function redirectToWhatsApp() {
+        const phoneNumber = "541133333333"; // Replace with the desired phone number
+        const message = "Hola, me interesa jugar en el casino."; // Replace with the desired message
+        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+          message
+        )}`;
+        window.open(whatsappUrl, "_blank");
+      }
+    </script>
+  </body>
+</html>
