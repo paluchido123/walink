@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Casino WhatsApp Button</title>
+    <title>Botón de WhatsApp para Casino</title>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
       body {
@@ -25,7 +25,7 @@
         border-radius: 20px;
         box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
         padding: 60px;
-        margin: 30px; /* Added margin */
+        margin: 30px; /* Añadido margen */
       }
       h1 {
         font-size: 48px;
@@ -41,7 +41,7 @@
         font-size: 24px;
         font-weight: 600;
         padding: 20px 40px;
-        border: none; /* Cambiado de 'border-radius: 50px;' */
+        border: none;
         border-radius: 50px;
         box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -58,7 +58,7 @@
       @media (max-width: 480px) {
         .container {
           padding: 40px;
-          margin: 20px; /* Adjusted mobile margin */
+          margin: 20px; /* Margen ajustado para móvil */
         }
         h1 {
           font-size: 36px;
@@ -77,18 +77,25 @@
     </div>
     <script>
       function redirectToWhatsApp() {
-        // Lista de enlaces predefinidos de wa.link
-        const whatsappUrls = [
-          "https://wa.link/pruebapagina",
-          // Añade más enlaces según sea necesario
-        ];
+        const phoneNumber = "5491128996200"; // Reemplaza con el número de teléfono deseado (formato internacional sin '+')
+        const message = "Hola, me interesa jugar en el casino."; // Reemplaza con el mensaje deseado
 
-        // Seleccionar un enlace aleatorio de la lista
-        const randomIndex = Math.floor(Math.random() * whatsappUrls.length);
-        const selectedUrl = whatsappUrls[randomIndex];
+        // Detectar si el dispositivo es móvil
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-        // Abrir el enlace en una nueva pestaña
-        window.open(selectedUrl, "_blank");
+        if (isMobile) {
+          // Construir la URL para abrir la aplicación de WhatsApp directamente
+          const whatsappAppUrl = `whatsapp://send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
+          
+          // Intentar abrir la aplicación de WhatsApp
+          window.location.href = whatsappAppUrl;
+        } else {
+          // Construir la URL para WhatsApp Web
+          const whatsappWebUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+          
+          // Abrir WhatsApp Web en una nueva pestaña
+          window.open(whatsappWebUrl, "_blank");
+        }
       }
     </script>
   </body>
