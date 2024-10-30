@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Botón de WhatsApp para Casino</title>
+    <!-- [Your existing head content] -->
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
       body {
@@ -72,31 +70,55 @@
   </head>
   <body>
     <div class="container">
-      <h1>¡Entra para empezar a jugar!</h1>
-      <button class="whatsapp-btn" onclick="redirectToWhatsApp()">WhatsApp</button>
+      <h1>Entra para empezar a jugar!</h1>
+      <a
+        href="#"
+        class="whatsapp-btn"
+        onclick="redirectToRandomLink()"
+        rel="noopener noreferrer"
+        >WhatsApp</a
+      >
     </div>
+
+    <!-- Prompt to open in default browser -->
+    <div class="prompt" id="browserPrompt">
+      <p>
+        Para una mejor experiencia, por favor abre este sitio en tu navegador
+        predeterminado.
+      </p>
+      <button onclick="openInBrowser()">Abrir en Navegador</button>
+    </div>
+
     <script>
-      function redirectToWhatsApp() {
-        const phoneNumber = "5491128996200"; // Reemplaza con el número de teléfono deseado (formato internacional sin '+')
-        const message = "Hola, me interesa jugar en el casino."; // Reemplaza con el mensaje deseado
+      const links = ["wa.link/pruebapagina"];
 
-        // Detectar si el dispositivo es móvil
-        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
-        if (isMobile) {
-          // Construir la URL para abrir la aplicación de WhatsApp directamente
-          const whatsappAppUrl = `whatsapp://send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
-          
-          // Intentar abrir la aplicación de WhatsApp
-          window.location.href = whatsappAppUrl;
-        } else {
-          // Construir la URL para WhatsApp Web
-          const whatsappWebUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-          
-          // Abrir WhatsApp Web en una nueva pestaña
-          window.open(whatsappWebUrl, "_blank");
-        }
+      function redirectToRandomLink() {
+        const randomIndex = Math.floor(Math.random() * links.length);
+        window.location.href = links[randomIndex];
       }
+
+      function isInstagramBrowser() {
+        const ua = navigator.userAgent || navigator.vendor || window.opera;
+        return ua.includes("Instagram");
+      }
+
+      function showPrompt() {
+        const prompt = document.getElementById("browserPrompt");
+        prompt.classList.add("active");
+      }
+
+      function openInBrowser() {
+        const url = window.location.href;
+        // Attempt to open in default browser using a workaround
+        window.open(url, "_blank");
+        // Optionally, provide instructions if the above doesn't work
+      }
+
+      window.onload = function () {
+        if (isInstagramBrowser()) {
+          showPrompt();
+        }
+      };
     </script>
   </body>
 </html>
